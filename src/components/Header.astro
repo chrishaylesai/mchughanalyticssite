@@ -1,0 +1,20 @@
+---
+import Nav from './Nav.astro';
+
+interface Props {
+  siteName?: string;
+}
+
+const { siteName = 'McHugh Analytics' } = Astro.props;
+---
+
+<header class="bg-white border-b border-neutral-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <img src="/mchughanalytics.jpg" alt="McHugh Analytics" class="h-10 w-auto" />
+      </a>
+      <Nav />
+    </div>
+  </div>
+</header>

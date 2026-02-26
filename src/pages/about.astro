@@ -1,0 +1,11 @@
+---
+import { getEntry } from 'astro:content';
+import ContentLayout from '../layouts/ContentLayout.astro';
+
+const page = await getEntry('pages', 'about');
+const { Content } = await page.render();
+---
+
+<ContentLayout title={`${page.data.title} | McHugh Analytics`} description={page.data.description}>
+  <Content />
+</ContentLayout>

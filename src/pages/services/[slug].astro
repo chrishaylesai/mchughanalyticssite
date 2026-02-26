@@ -1,0 +1,28 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+const { Content } = await service.render();
+---
+
+<ContentLayout title={`${service.data.title} | McHugh Analytics`} description={service.data.description}>
+  <Content />
+  <div class="mt-12 pt-8 border-t border-neutral-200">
+    <a href="/services" class="text-accent-600 hover:text-accent-700 font-medium">
+      &larr; Back to Services
+    </a>
+  </div>
+</ContentLayout>

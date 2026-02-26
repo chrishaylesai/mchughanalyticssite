@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/Card.astro';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout title="Services | McHugh Analytics" description="Our analytics and data services">
+  <section class="py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="text-center mb-12">
+        <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">Our Services</h1>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+          Placeholder intro text for your services page.
+        </p>
+      </header>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+        {services.map((service) => (
+          <Card
+            title={service.data.title}
+            description={service.data.description}
+            href={`/services/${service.slug}`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
