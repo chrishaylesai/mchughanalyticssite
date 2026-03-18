@@ -16,7 +16,9 @@ jobs:
 
       - name: Extract appVersion from Chart.yaml
         id: chart
-        run: echo "APP_VERSION=$(grep '^appVersion:' helm/mchughanalytics/Chart.yaml | sed 's/appVersion: *"\(.*\)"/\1/')" >> "$GITHUB_OUTPUT"
+        run: |
+          APP_VERSION=$(grep '^appVersion:' helm/mchughanalytics/Chart.yaml | sed 's/appVersion: *"\(.*\)"/\1/')
+          echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Deploy Helm chart
         uses: deliverybot/helm@v1
