@@ -1,0 +1,12 @@
+McHugh Analytics has been deployed!
+
+{{- if .Values.ingress.enabled }}
+The site is accessible via ingress:
+{{- range .Values.ingress.hosts }}
+  https://{{ .host }}
+{{- end }}
+{{- else }}
+To access the site, run:
+  kubectl port-forward svc/{{ include "mchughanalytics.fullname" . }} 8080:{{ .Values.service.port }}
+  Then visit http://localhost:8080
+{{- end }}
