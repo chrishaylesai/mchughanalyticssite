@@ -1,0 +1,32 @@
+name: Deploy Helm Chart
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'helm/mchughanalytics/Chart.yaml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract appVersion from Chart.yaml
+        id: chart
+        run: echo "APP_VERSION=$(grep '^appVersion:' helm/mchughanalytics/Chart.yaml | sed 's/appVersion: *"\(.*\)"/\1/')" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy Helm chart
+        uses: deliverybot/helm@v1
+        with:
+          release: mchughanalytics
+          namespace: mchughanalytics
+          chart: ./helm/mchughanalytics
+          token: ${{ github.token }}
+          values: |
+            image:
+              tag: ${{ steps.chart.outputs.APP_VERSION }}
+        env:
+          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}

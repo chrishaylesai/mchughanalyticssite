@@ -4,11 +4,10 @@ set -euo pipefail
 VERSION=$(node -p "require('./package.json').version")
 IMAGE="chrishaylesai/mchughanalytics"
 
-echo "Building ${IMAGE}:${VERSION}..."
-docker build -t "${IMAGE}:${VERSION}" -t "${IMAGE}:latest" .
+echo "Building ${IMAGE}:${VERSION}-amd64..."
+docker build -t "${IMAGE}:${VERSION}-amd64" .
 
-echo "Pushing ${IMAGE}:${VERSION}..."
-docker push "${IMAGE}:${VERSION}"
-docker push "${IMAGE}:latest"
+echo "Pushing ${IMAGE}:${VERSION}-amd64..."
+docker push "${IMAGE}:${VERSION}-amd64"
 
-echo "Done. Pushed ${IMAGE}:${VERSION} and ${IMAGE}:latest"
+echo "Done. Pushed ${IMAGE}:${VERSION}-amd64"
