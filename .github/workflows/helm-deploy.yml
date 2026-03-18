@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'helm/mchughanalytics/Chart.yaml'
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -20,15 +21,18 @@ jobs:
           APP_VERSION=$(grep '^appVersion:' helm/mchughanalytics/Chart.yaml | sed 's/appVersion: *"\(.*\)"/\1/')
           echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_OUTPUT"
 
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Set up kubeconfig
+        run: |
+          mkdir -p "$HOME/.kube"
+          echo "${{ secrets.KUBECONFIG }}" > "$HOME/.kube/config"
+          chmod 600 "$HOME/.kube/config"
+
       - name: Deploy Helm chart
-        uses: deliverybot/helm@v1
-        with:
-          release: mchughanalytics
-          namespace: mchughanalytics
-          chart: ./helm/mchughanalytics
-          token: ${{ github.token }}
-          values: |
-            image:
-              tag: ${{ steps.chart.outputs.APP_VERSION }}
-        env:
-          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}
+        run: |
+          helm upgrade --install mchughanalytics ./helm/mchughanalytics \
+            --namespace mchughanalytics \
+            --create-namespace \
+            --set image.tag=${{ steps.chart.outputs.APP_VERSION }}
