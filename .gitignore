@@ -6,6 +6,7 @@ CLAUDE.md
 dist/
 # generated types
 .astro/
+.astro_old/*
 
 # dependencies
 node_modules/

@@ -1,26 +1,52 @@
 ---
 title: Privacy Policy
-description: How we handle your data and protect your privacy.
+description: How McHugh Analytics handles your data and protects your privacy.
 ---
 
-## Introduction
+**Effective Date:** 18 March 2026
 
-Placeholder privacy policy content. This should describe how you collect, use, and protect user data.
+McHugh Analytics ("we," "us," or "our") operates the McHugh Analytics website. This Privacy Policy explains how we collect, use, and protect information when you visit our site.
 
 ## Information We Collect
 
-Placeholder description of data collection practices.
+**Automatically Collected Information.** When you visit our website, we may automatically collect certain information about your device and usage, including your IP address, browser type and version, operating system, referring URLs, pages viewed, time spent on pages, and other standard web analytics data. This information is collected through cookies and similar tracking technologies.
+
+**Cookies.** We use cookies and similar technologies to analyse website traffic and understand how visitors interact with our site. You can control cookie preferences through your browser settings. Disabling cookies may affect your experience on our site.
 
 ## How We Use Your Information
 
-Placeholder description of data usage.
+We use the information we collect to operate, maintain, and improve our website; analyse usage trends and visitor behaviour; ensure the security and integrity of our site; and comply with legal obligations.
+
+We do not sell, rent, or share your personal information with third parties for their marketing purposes.
+
+## Third-Party Services
+
+We may use third-party analytics services (such as Google Analytics) to help us understand website usage. These services may collect information about your visits to our site using cookies and similar technologies. These third parties have their own privacy policies governing their use of this information.
+
+## Data Retention
+
+We retain automatically collected data for as long as necessary to fulfil the purposes described in this policy, after which it is deleted or anonymised.
 
 ## Data Security
 
-Placeholder description of security measures.
+We implement reasonable technical and organisational measures to protect the information we collect. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.
 
-## Contact
+## Your Rights
 
-For privacy-related inquiries, contact placeholder@example.com.
+Depending on your jurisdiction, you may have the right to access the personal data we hold about you, request correction or deletion of your data, object to or restrict processing, and lodge a complaint with a supervisory authority.
 
-*Last updated: [Date]*
+To exercise any of these rights, please contact us using the details below.
+
+## Children's Privacy
+
+Our website is not directed at children under the age of 16, and we do not knowingly collect personal information from children.
+
+## Changes to This Policy
+
+We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
+
+## Contact Us
+
+If you have any questions about this Privacy Policy, you can contact us at info@mchughanalytics.com.
+
+*Last updated: 18 March 2026*
