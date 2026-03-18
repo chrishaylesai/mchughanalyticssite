@@ -3,20 +3,32 @@ import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
 import Card from '../components/Card.astro';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection('services'))
+  .filter((s) => !s.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<PageLayout title="Services | McHugh Analytics" description="Our analytics and data services">
-  <section class="py-16 sm:py-24">
+<PageLayout
+  title="Services | McHugh Analytics"
+  description="AI automation, cloud infrastructure, data engineering, and technology advisory for SMEs and scale-ups."
+>
+  <!-- Page header -->
+  <section class="bg-primary-900 py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="text-center mb-12">
-        <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">Our Services</h1>
-        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
-          Placeholder intro text for your services page.
-        </p>
-      </header>
+      <p class="text-accent-400 text-xs font-semibold tracking-widest uppercase mb-4">Services</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 max-w-xl">
+        What I can help you with
+      </h1>
+      <p class="text-primary-300 text-lg max-w-2xl">
+        From quick advisory engagements to end-to-end infrastructure builds, I work across the full stack of modern cloud and AI engineering.
+      </p>
+    </div>
+  </section>
 
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+  <!-- Services grid -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-6 sm:grid-cols-2">
         {services.map((service) => (
           <Card
             title={service.data.title}
@@ -24,6 +36,29 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
             href={`/services/${service.slug}`}
           />
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-neutral-50 py-16 sm:py-20 border-t border-neutral-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+        <h2 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
+          Not sure where to start?
+        </h2>
+        <p class="text-neutral-600 mb-6">
+          Drop me a message and we can figure out together where I can be most useful.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+        >
+          Get in touch
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>

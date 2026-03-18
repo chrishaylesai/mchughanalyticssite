@@ -1,11 +1,90 @@
 ---
-import { getEntry } from 'astro:content';
-import ContentLayout from '../layouts/ContentLayout.astro';
-
-const page = await getEntry('pages', 'contact');
-const { Content } = await page.render();
+import PageLayout from '../layouts/PageLayout.astro';
 ---
 
-<ContentLayout title={`${page.data.title} | McHugh Analytics`} description={page.data.description}>
-  <Content />
-</ContentLayout>
+<PageLayout
+  title="Contact | McHugh Analytics"
+  description="Get in touch with McHugh Analytics to discuss your AI and cloud infrastructure needs."
+>
+  <!-- Header -->
+  <section class="bg-primary-900 py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-accent-400 text-xs font-semibold tracking-widest uppercase mb-4">Contact</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 max-w-xl">
+        Let's talk
+      </h1>
+      <p class="text-primary-300 text-lg max-w-xl">
+        Whether you have a specific project in mind or just want to explore what's possible — I'm happy to have a conversation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact content -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+
+        <!-- Left: what to expect -->
+        <div>
+          <h2 class="text-xl font-bold text-neutral-900 mb-4">What to expect</h2>
+          <p class="text-neutral-600 leading-relaxed mb-6">
+            Send me a message with a bit of context about what you're working on. I'll get back to you promptly and we can set up a call if it seems like a good fit.
+          </p>
+          <p class="text-neutral-600 leading-relaxed mb-8">
+            There's no obligation, no sales process, and no pitch deck. I'll ask a few questions, tell you honestly whether I think I can help, and we'll go from there.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-9 h-9 flex-shrink-0 rounded-lg bg-accent-50 flex items-center justify-center text-accent-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-neutral-900 mb-0.5">Email</p>
+                <a href="mailto:info@mchughanalytics.com" class="text-accent-600 hover:text-accent-700 text-sm transition-colors">
+                  info@mchughanalytics.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-9 h-9 flex-shrink-0 rounded-lg bg-accent-50 flex items-center justify-center text-accent-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-neutral-900 mb-0.5">Response time</p>
+                <p class="text-sm text-neutral-600">I aim to reply within one business day.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: quick topics -->
+        <div>
+          <h2 class="text-xl font-bold text-neutral-900 mb-4">What I can help with</h2>
+          <div class="space-y-3">
+            {[
+              { title: 'AI Agents & Automation', desc: 'Automating workflows and processes using AI agents.' },
+              { title: 'Cloud Infrastructure', desc: 'Migrations, modernisation, and cloud platform builds.' },
+              { title: 'Data Engineering', desc: 'Pipelines, data platforms, and data warehouses.' },
+              { title: 'Strategy & Advisory', desc: 'Technology roadmaps, architecture reviews, and vendor selection.' },
+            ].map((item) => (
+              <div class="flex items-start gap-3 p-4 rounded-lg bg-neutral-50 border border-neutral-200">
+                <span class="text-accent-500 text-sm mt-0.5 flex-shrink-0">→</span>
+                <div>
+                  <p class="text-sm font-semibold text-neutral-900">{item.title}</p>
+                  <p class="text-xs text-neutral-500 mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</PageLayout>

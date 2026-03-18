@@ -1,11 +1,147 @@
 ---
-import { getEntry } from 'astro:content';
-import ContentLayout from '../layouts/ContentLayout.astro';
-
-const page = await getEntry('pages', 'about');
-const { Content } = await page.render();
+import PageLayout from '../layouts/PageLayout.astro';
 ---
 
-<ContentLayout title={`${page.data.title} | McHugh Analytics`} description={page.data.description}>
-  <Content />
-</ContentLayout>
+<PageLayout
+  title="About | McHugh Analytics"
+  description="10+ years in cloud and DevOps engineering. Independent consulting for businesses that need senior expertise without a full-time hire."
+>
+  <!-- Header -->
+  <section class="bg-primary-900 py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-accent-400 text-xs font-semibold tracking-widest uppercase mb-4">About</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 max-w-xl">
+        About McHugh Analytics
+      </h1>
+      <p class="text-primary-300 text-lg max-w-2xl">
+        Independent AI and cloud engineering consultancy, founded by Christopher McHugh.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+
+        <!-- Bio -->
+        <div class="lg:col-span-3 space-y-6 text-neutral-700 leading-relaxed">
+          <h2 class="text-2xl font-bold text-neutral-900">Hi, I'm Christopher</h2>
+          <p>
+            I'm an independent consultant and engineer with over 10 years of experience in DevOps engineering and software development, including 4+ years working as a consultant engineer directly with client organisations.
+          </p>
+          <p>
+            I founded McHugh Analytics to offer SMEs and scale-ups access to the kind of senior engineering and AI expertise that usually only enterprise organisations can afford — without the overhead, the long contracts, or the agency markup.
+          </p>
+          <p>
+            My background is in cloud infrastructure and automation, and I've worked hands-on across AWS, Azure, Google Cloud Platform, and on-premises environments. I'm not married to any particular technology or vendor — I pick the right tool for the job.
+          </p>
+          <p>
+            These days I'm particularly focused on helping businesses get real, practical value from AI — specifically agentic automation that removes genuine friction from their workflows, rather than AI for its own sake.
+          </p>
+        </div>
+
+        <!-- Credentials panel -->
+        <div class="lg:col-span-2">
+          <div class="bg-neutral-50 rounded-xl border border-neutral-200 p-6 space-y-6">
+            <div>
+              <p class="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">Experience</p>
+              <ul class="space-y-2 text-sm text-neutral-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-accent-500 mt-0.5">✓</span>
+                  10+ years in DevOps & software engineering
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-accent-500 mt-0.5">✓</span>
+                  4+ years as a consultant engineer
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-accent-500 mt-0.5">✓</span>
+                  Extensive public cloud experience
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-accent-500 mt-0.5">✓</span>
+                  On-premises &amp; hybrid infrastructure
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">Platforms</p>
+              <div class="flex flex-wrap gap-2">
+                {['AWS', 'Azure', 'GCP', 'On-prem', 'Hybrid'].map((tag) => (
+                  <span class="text-xs bg-primary-50 text-primary-700 border border-primary-100 px-2.5 py-1 rounded-full font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-3">Focus areas</p>
+              <div class="flex flex-wrap gap-2">
+                {['AI Agents', 'Automation', 'Cloud Migration', 'IaC', 'Data Engineering', 'CI/CD'].map((tag) => (
+                  <span class="text-xs bg-accent-50 text-accent-700 border border-accent-100 px-2.5 py-1 rounded-full font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How I work -->
+  <section class="py-16 sm:py-20 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-neutral-900 mb-8">How I work</h2>
+      <div class="grid sm:grid-cols-3 gap-8">
+        <div>
+          <div class="text-accent-500 font-bold text-2xl mb-3">01</div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Understand first</h3>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            I spend time understanding your actual situation before recommending anything. That means asking direct questions and being honest about what I find.
+          </p>
+        </div>
+        <div>
+          <div class="text-accent-500 font-bold text-2xl mb-3">02</div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Pragmatic recommendations</h3>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            I recommend what fits your scale and your team — not the most impressive solution, or the one I happen to know best.
+          </p>
+        </div>
+        <div>
+          <div class="text-accent-500 font-bold text-2xl mb-3">03</div>
+          <h3 class="font-semibold text-neutral-900 mb-2">Hands-on delivery</h3>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            I build the things we agree on. You get something that works and that you can operate, extend, or hand off — not a report that sits on a shelf.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-800 py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">
+          Want to work together?
+        </h2>
+        <p class="text-primary-300 mb-6">
+          I'm happy to have an initial conversation about your situation — no commitment, no pitch.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+        >
+          Get in touch
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

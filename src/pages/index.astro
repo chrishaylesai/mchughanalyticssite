@@ -1,65 +1,181 @@
 ---
 import { getCollection } from 'astro:content';
 import PageLayout from '../layouts/PageLayout.astro';
-import Card from '../components/Card.astro';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = (await getCollection('services'))
+  .filter((s) => !s.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const serviceIcons: Record<string, string> = {
+  sparkles: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" /></svg>`,
+  cloud: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>`,
+  database: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 2.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>`,
+  chart: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>`,
+};
 ---
 
-<PageLayout title="McHugh Analytics" description="Data-driven insights for your business">
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-primary-800 via-primary-600 to-accent-500 text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+<PageLayout
+  title="McHugh Analytics | AI Agents & Cloud Infrastructure"
+  description="Independent AI and cloud infrastructure consulting for SMEs and scale-ups. Senior engineering expertise, no agency overhead."
+>
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="relative bg-primary-900 overflow-hidden">
+    <div
+      class="absolute inset-0 opacity-10"
+      style="background-image: radial-gradient(circle, #38a3f5 1px, transparent 1px); background-size: 32px 32px;"
+    ></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500 to-transparent"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
       <div class="max-w-3xl">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-          McHugh Analytics
+        <p class="text-accent-400 text-xs font-semibold tracking-widest uppercase mb-5">
+          Independent Consulting &amp; Engineering
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          AI agents and cloud infrastructure for growing businesses
         </h1>
-        <p class="text-lg sm:text-xl text-primary-100 mb-8">
-          Placeholder hero text. Describe your value proposition here.
+        <p class="text-lg sm:text-xl text-primary-300 mb-10 max-w-2xl leading-relaxed">
+          Senior consulting and engineering — without the agency overhead. I help SMEs and scale-ups modernise their infrastructure, automate workflows with AI, and build data foundations that actually work.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/services"
+            class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            See what I do
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-transparent hover:bg-primary-800 text-white border border-primary-600 hover:border-primary-500 px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ──────────────────────────────────────────── -->
+  <section class="py-20 sm:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-accent-600 text-xs font-semibold tracking-widest uppercase mb-3">What I do</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 max-w-xl">
+          End-to-end AI and cloud engineering
+        </h2>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        {services.map((service) => {
+          const iconSvg = serviceIcons[service.data.icon ?? ''] ?? '';
+          return (
+            <a
+              href={`/services/${service.slug}`}
+              class="group flex gap-5 p-6 rounded-xl border border-neutral-200 hover:border-accent-400 hover:shadow-lg bg-white transition-all"
+            >
+              <div class="flex-shrink-0 w-11 h-11 rounded-lg bg-accent-50 flex items-center justify-center text-accent-600 group-hover:bg-accent-100 transition-colors">
+                <Fragment set:html={iconSvg} />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-neutral-900 mb-1 group-hover:text-accent-700 transition-colors">
+                  {service.data.title}
+                </h3>
+                <p class="text-sm text-neutral-500 leading-relaxed">
+                  {service.data.description}
+                </p>
+                <span class="inline-flex items-center gap-1 text-accent-600 text-sm font-medium mt-3">
+                  Learn more
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY MCUGH ANALYTICS ───────────────────────────────── -->
+  <section class="py-20 sm:py-28 bg-neutral-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-accent-600 text-xs font-semibold tracking-widest uppercase mb-3">Why work with me</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 max-w-xl">
+          Senior expertise, without the overhead
+        </h2>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-3">
+        <div class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900 mb-2">Hands-on delivery</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">
+              I don't just produce strategy decks. I build the things we agree on — infrastructure, pipelines, agents, integrations — and I'm accountable for them working.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900 mb-2">Platform-agnostic</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">
+              AWS, Azure, GCP, on-premises, hybrid — I've worked across all of them. I'll recommend what's right for your situation, not what I happen to prefer.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center text-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-neutral-900 mb-2">Sized for your business</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">
+              I work with SMEs and scale-ups, not enterprise giants. Pragmatic solutions that fit your scale, budget, and team — without the bloat.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────── -->
+  <section class="bg-primary-800 py-20 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+          Ready to modernise?
+        </h2>
+        <p class="text-primary-300 text-lg mb-8">
+          Whether you know exactly what you need or just know something has to change — let's talk. No obligation, no sales deck.
         </p>
         <a
           href="/contact"
-          class="inline-block bg-white text-primary-800 px-6 py-3 rounded-lg font-semibold hover:bg-accent-50 transition-colors"
+          class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-400 text-white px-7 py-3.5 rounded-lg font-semibold transition-colors"
         >
-          Get Started
+          Get in touch
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="py-16 sm:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-8 text-center">
-        Services
-      </h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <Card
-            title={service.data.title}
-            description={service.data.description}
-            href={`/services/${service.slug}`}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="bg-neutral-100 py-16 sm:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-2xl sm:text-3xl font-bold text-neutral-900 mb-4">
-        Ready to get started?
-      </h2>
-      <p class="text-neutral-600 mb-8 max-w-2xl mx-auto">
-        Placeholder call-to-action text. Encourage visitors to take the next step.
-      </p>
-      <a
-        href="/contact"
-        class="inline-block bg-accent-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-accent-600 transition-colors"
-      >
-        Contact Us
-      </a>
     </div>
   </section>
 </PageLayout>

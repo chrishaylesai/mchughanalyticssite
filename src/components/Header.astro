@@ -1,18 +1,15 @@
 ---
 import Nav from './Nav.astro';
-
-interface Props {
-  siteName?: string;
-}
-
-const { siteName = 'McHugh Analytics' } = Astro.props;
 ---
 
-<header class="bg-white border-b border-neutral-200">
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-        <img src="/mchughanalytics.jpg" alt="McHugh Analytics" class="h-10 w-auto" />
+        <img src="/mchughanalytics.jpg" alt="McHugh Analytics" class="h-9 w-auto" />
+        <span class="font-semibold text-primary-900 text-sm hidden sm:block tracking-tight">
+          McHugh Analytics
+        </span>
       </a>
       <Nav />
     </div>
