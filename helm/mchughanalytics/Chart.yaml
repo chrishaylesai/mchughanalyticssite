@@ -3,4 +3,4 @@ name: mchughanalytics
 description: A Helm chart for deploying the McHugh Analytics website
 type: application
 version: 0.1.1
-appVersion: "0.0.10"
+appVersion: "0.0.11"
