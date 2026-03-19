@@ -11,11 +11,11 @@ McHugh Analytics ("we," "us," or "our") operates the McHugh Analytics website. T
 
 **Automatically Collected Information.** When you visit our website, we may automatically collect certain information about your device and usage, including your IP address, browser type and version, operating system, referring URLs, pages viewed, time spent on pages, and other standard web analytics data. This information is collected through cookies and similar tracking technologies.
 
-**Cookies.** We use cookies and similar technologies to analyse website traffic and understand how visitors interact with our site. You can control cookie preferences through your browser settings. Disabling cookies may affect your experience on our site.
+**Cookies.** We use cookies and similar technologies to analyze website traffic and understand how visitors interact with our site. You can control cookie preferences through your browser settings. Disabling cookies may affect your experience on our site.
 
 ## How We Use Your Information
 
-We use the information we collect to operate, maintain, and improve our website; analyse usage trends and visitor behaviour; ensure the security and integrity of our site; and comply with legal obligations.
+We use the information we collect to operate, maintain, and improve our website; analyze usage trends and visitor behavior; ensure the security and integrity of our site; and comply with legal obligations.
 
 We do not sell, rent, or share your personal information with third parties for their marketing purposes.
 
@@ -29,7 +29,7 @@ We retain automatically collected data for as long as necessary to fulfil the pu
 
 ## Data Security
 
-We implement reasonable technical and organisational measures to protect the information we collect. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.
+We implement reasonable technical and organizational measures to protect the information we collect. However, no method of transmission over the internet or electronic storage is completely secure, and we cannot guarantee absolute security.
 
 ## Your Rights
 
