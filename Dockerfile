@@ -7,6 +7,10 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
+
+ARG PUBLIC_GA_MEASUREMENT_ID
+ENV PUBLIC_GA_MEASUREMENT_ID=$PUBLIC_GA_MEASUREMENT_ID
+
 RUN npm run build
 
 # Production stage
