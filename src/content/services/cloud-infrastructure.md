@@ -1,6 +1,6 @@
 ---
 title: Cloud Infrastructure & Migration
-description: Migrate, modernise, and scale your infrastructure across AWS, Azure, GCP, or hybrid environments — done properly, without the enterprise overhead.
+description: Migrate, modernize, and scale your infrastructure across AWS, Azure, GCP, or hybrid environments — done properly, without the enterprise overhead.
 icon: cloud
 order: 2
 ---
