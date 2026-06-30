@@ -25,10 +25,15 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+    - host: www.mchughanalytics.com
+      paths:
+        - path: /
+          pathType: Prefix
   tls:
     - secretName: mchughanalytics-tls
       hosts:
         - mchughanalytics.com
+        - www.mchughanalytics.com
 
 resources:
   requests:
